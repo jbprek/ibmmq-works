@@ -10,14 +10,14 @@ services:
         - "9443:9443"
       container_name: ibmmq-server
       environment:
-        - LICENCE=accept
+        - LICENSE=accept
         - MQ_QMGR_NAME=QM1
         - MQ_APP_PASSWORD=Wh0Kno!
       volumes:
         - ibmmq-server-volume:/mnt/mqm
       networks:
         ibmmq-network:
-          - ipv4_address: 192.169.20.2
+          - ipv4_address: 192.168.20.2
           - aliases:
               - qmgr
 volumes:

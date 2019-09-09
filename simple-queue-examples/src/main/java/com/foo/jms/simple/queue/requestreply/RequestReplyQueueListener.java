@@ -11,7 +11,7 @@ class RequestReplyQueueListener {
 
     @JmsListener(destination = "${com.foo.ibmmq.simple.queue.requestReplyQueue}")
     public String process(Message<String> message) {
-        return message.getPayload();
+        return "Reesponse for queue for :"+message.getPayload();
     }
 }
 
