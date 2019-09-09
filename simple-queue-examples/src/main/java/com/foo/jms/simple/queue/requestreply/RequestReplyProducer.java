@@ -25,7 +25,7 @@ public class RequestReplyProducer {
         private String request;
         private Instant requestTimestamp;
         private String response;
-        private Instant responseTimeStamp;
+        private Instant responseTimestamp;
     }
 
     private JmsTemplate jmsTemplate;
@@ -47,8 +47,8 @@ public class RequestReplyProducer {
             payload.setText(message);
             return payload;
         });
-        receipt.setRequest(((TextMessage)responseMessage).getText());
-        receipt.setRequestTimestamp(Instant.now());
+        receipt.setResponse(((TextMessage)responseMessage).getText());
+        receipt.setResponseTimestamp(Instant.now());
         return receipt;
     }
 }

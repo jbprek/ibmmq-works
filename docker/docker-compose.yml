@@ -1,6 +1,6 @@
 version '3'
 services:
-  mq-server:
+  ibmmq-server:
       stdin_open: true
       tty: true
       restart: always
@@ -8,21 +8,22 @@ services:
       ports:
         - "1414:1414"
         - "9443:9443"
-      container_name: ibm-mq-server
+      container_name: ibmmq-server
       environment:
         - LICENCE=accept
         - MQ_QMGR_NAME=QM1
         - MQ_APP_PASSWORD=Wh0Kno!
       volumes:
-        - mq-server-volume:/mnt/mqm
+        - ibmmq-server-volume:/mnt/mqm
       networks:
-        msg-network:
+        ibmmq-network:
+          - ipv4_address: 192.169.20.2
           - aliases:
               - qmgr
 volumes:
-  mq-server-volume:
+  ibmmq-server-volume:
     external: true
 
 networks:
-  msg-network:
+  ibmmq-network:
     external: true
