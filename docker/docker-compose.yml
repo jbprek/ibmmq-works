@@ -1,0 +1,28 @@
+version '3'
+services:
+  mq-server:
+      stdin_open: true
+      tty: true
+      restart: always
+      image: ibmcom/mq:latest
+      ports:
+        - "1414:1414"
+        - "9443:9443"
+      container_name: ibm-mq-server
+      environment:
+        - LICENCE=accept
+        - MQ_QMGR_NAME=QM1
+        - MQ_APP_PASSWORD=Wh0Kno!
+      volumes:
+        - mq-server-volume:/mnt/mqm
+      networks:
+        msg-network:
+          - aliases:
+              - qmgr
+volumes:
+  mq-server-volume:
+    external: true
+
+networks:
+  msg-network:
+    external: true
