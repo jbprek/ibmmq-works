@@ -1,13 +1,14 @@
 version: '3'
+#version: '2'
 services:
   ibmmq-server:
       stdin_open: true
       tty: true
       restart: always
       image: ibmcom/mq:latest
-      ports:
-        - "1414:1414"
-        - "9443:9443"
+#      ports:
+#        - "1414:1414"
+#        - "9443:9443"
       container_name: ibmmq-server
       environment:
         - LICENSE=accept
@@ -19,7 +20,7 @@ services:
         ibmmq-network:
           ipv4_address: 192.168.20.2
           aliases:
-              - qmgr
+            - qmgr
 volumes:
   ibmmq-server-volume:
     external: true
