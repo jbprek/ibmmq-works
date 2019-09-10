@@ -1,4 +1,4 @@
-version '3'
+version: '3'
 services:
   ibmmq-server:
       stdin_open: true
@@ -17,8 +17,8 @@ services:
         - ibmmq-server-volume:/mnt/mqm
       networks:
         ibmmq-network:
-          - ipv4_address: 192.168.20.2
-          - aliases:
+          ipv4_address: 192.168.20.2
+          aliases:
               - qmgr
 volumes:
   ibmmq-server-volume:
