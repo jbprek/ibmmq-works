@@ -11,7 +11,7 @@
 
     <modules>
         <module>simple-queue-examples</module>
+        <module>simple-topic-examples</module>
     </modules>
-
 
 </project>
