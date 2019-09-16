@@ -1,30 +1,27 @@
-package com.foo.jms.simple.queue.listener;
+package com.foo.jms.simple.topic;
 
 import io.swagger.annotations.Api;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.jms.TextMessage;
-import java.time.Instant;
 
-@Api(value="Send Message to a Queue", description = "Fire And Forget")
+@Api(value="Publish a message to a topic", description = "Topic Publisher")
 @RestController
-@RequestMapping(path="/messages/simpleProducer")
-@AllArgsConstructor
-public class SimpleQueueProducer {
+@RequestMapping(path="/messages/publish")
+public class SimplePublisher {
 
-    @Value("${spring.jms.template.default-destination}")
+    @Value("${com.foo.ibmmq.simple.topic}")
     private String destinationName;
 
     @Autowired
-    @Qualifier("queue")
+    @Qualifier("topic")
     private JmsTemplate jmsTemplate;
 
     @PutMapping("/{message}")

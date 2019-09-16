@@ -3,6 +3,8 @@ package com.foo.jms.simple.queue.requestreply;
 import io.swagger.annotations.Api;
 import lombok.Data;
 import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,14 +30,13 @@ public class RequestReplyProducer {
         private Instant responseTimestamp;
     }
 
+    @Qualifier("queue")
+    @Autowired
     private JmsTemplate jmsTemplate;
 
     @Value("${com.foo.ibmmq.simple.queue.requestReplyQueue}")
     private String destinationName;
 
-    public RequestReplyProducer(JmsTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
-    }
 
     @GetMapping("/{message}")
     public  MessageReceipt sendMessage(@PathVariable("message") String message) throws JMSException {
