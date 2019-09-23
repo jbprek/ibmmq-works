@@ -11,6 +11,8 @@
 
     <modules>
         <module>simple-examples</module>
+        <module>tx-simple-warehouse</module>
+
     </modules>
 
 
