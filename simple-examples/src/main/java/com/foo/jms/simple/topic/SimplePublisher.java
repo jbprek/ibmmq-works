@@ -1,7 +1,6 @@
 package com.foo.jms.simple.topic;
 
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
@@ -20,12 +19,14 @@ public class SimplePublisher {
     @Value("${com.foo.ibmmq.simple.topic}")
     private String destinationName;
 
-    @Autowired
-    @Qualifier("topic")
     private JmsTemplate jmsTemplate;
 
+    public SimplePublisher( @Qualifier("topic") JmsTemplate jmsTemplate) {
+        this.jmsTemplate = jmsTemplate;
+    }
+
     @PutMapping("/{message}")
-    public void sentMessage(@PathVariable("message") String message) {
+    public void publishMessage(@PathVariable("message") String message) {
         jmsTemplate.send(destinationName, session -> {
             TextMessage payload = session.createTextMessage();
             payload.setText(message);

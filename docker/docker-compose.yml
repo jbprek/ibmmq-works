@@ -6,9 +6,9 @@ services:
       tty: true
       restart: always
       image: ibmcom/mq:latest
-#      ports:
-#        - "1414:1414"
-#        - "9443:9443"
+      ports:
+        - "1414:1414"
+        - "9443:9443"
       container_name: ibmmq-server
       environment:
         - LICENSE=accept

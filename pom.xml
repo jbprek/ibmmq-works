@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>simple-queue-examples</module>
+        <module>simple-examples</module>
     </modules>
 
 

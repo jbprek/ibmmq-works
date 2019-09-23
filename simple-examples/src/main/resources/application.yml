@@ -9,14 +9,14 @@ com:
   foo:
     ibmmq:
       simple:
-        queue:
-          requestReplyQueue: DEV.QUEUE.2
+        queue: DEV.QUEUE.2
+        topic: DEV.BASE.TOPIC
 
 ibm:
   mq:
     queueManager: QM1
     channel: DEV.ADMIN.SVRCONN
-#    connName: localhost(1414)
-    connName: 192.168.20.2(1414)
+    connName: localhost(1414)
+#    connName: 192.168.20.2(1414)
     user: admin
     password: passw0rd
